@@ -1,0 +1,69 @@
+html,
+body
+{
+  background-color: #E5E5E5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Funny icon for external links */
+a[target='_blank'] ):after
+{
+  content: "\e066";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-size: 0.6em;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0 0 0 5px;
+  position: relative;
+  top: -5px;
+}
+
+/* Fix for rows outside of containers */
+:not(.container) [class^=col]
+{
+  padding-left: 0;
+  padding-right: 0;
+}
+:not(.container) .row
+{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Top bar  */
+#chrome
+{
+  background-color: #364347;
+  border-bottom: 1px solid #333;
+  color: #fff;
+  font-family: "SourceSansProSemiBold", Helvetica, sans-serif;
+  font-size: 1.1em;
+  line-height: 2.5em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  text-align: center;
+  -webkit-app-region: drag;
+}
+#chrome button
+{
+  -webkit-app-region: no-drag;
+}
+
+/* ...dont ask :D */
+.container > .row:last-of-type > [class^="col-"]
+{
+  padding-bottom: 1em;
+}
+
+/* Debug output area */
+#console
+{
+  height: 12em;
+  margin-top: 1em;
+  max-height: 12em;
+  max-width: 100%;
+  overflow: auto;
+}
