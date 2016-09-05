@@ -6,7 +6,7 @@ Want the ready-to-use version? Check out [Releases](https://github.com/Sleavely/
 
 ## How it works
 
-The app logs in as you on Nordnet and then once per minute it refreshes the "[press releases](https://www.nordnet.se/mux/web/analys/nyheter/nyheterPressmeddelanden.html)" page with a filter for your portfolio only.
+The app logs in as you on Nordnet and then once per minute it refreshes the "[press releases](https://www.nordnet.se/mux/web/analys/nyheter/nyheterPressmeddelanden.html)" page with a filter for your portfolio only. When an unread news item appears you'll receive a desktop notification.
 
 ## Privacy
 
