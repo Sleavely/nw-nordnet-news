@@ -191,46 +191,52 @@ jQuery(document).ready(function(){
         var $rows = jQuery('a.news', newsBody).closest('tr');
         $rows.each(function(i, v){
           var $row = jQuery(v);
-          var newsKey = $row.find('a').attr('onclick');
-          var newsText = $row.find('a').text();
 
-          // Extract source and ID from the newsKey so we can construct a link
-          var poopExtract = newsKey.match('this,\'(.*)\',\'(.*)\'');
-          var newsSource = poopExtract[2];
-          var newsId = poopExtract[1];
-          var newsLink = 'https://www.nordnet.se/mux/web/analys/nyheter/visaNyhet.html?itemid='+poopExtract[1]+'&sourcecode='+poopExtract[2];
+          // Extract source and ID so we can construct a permalink
+          var keyExtract = $row.find('a').attr('onclick').match('this,\'(.*)\',\'(.*)\'');
 
-          if(printedNews.indexOf(newsKey) === -1)
+          var newsEntry = {
+            source: keyExtract[2],
+            id: keyExtract[1], // The ID at the source, not the entry ID
+            title: $row.find('a').text(),
+            url: 'https://www.nordnet.se/mux/web/analys/nyheter/visaNyhet.html?itemid='+keyExtract[1]+'&sourcecode='+keyExtract[2],
+            publishedAt: $row.find('.time').text(),
+            printed: false,
+            notified: false,
+            read: false
+          };
+          // Set a unique ID on this thing
+          newsEntry.key = `nordnet_${newsEntry.source}_${newsEntry.id}`;
+
+          if(printedNews.indexOf(newsEntry.key) === -1)
           {
             // Add link to list
-            jQuery('.news-items ul').prepend('<li><a href="'+newsLink+'" target="_blank">'+newsText+'</a></li>');
+            jQuery('.news-items ul').prepend('<li><a href="'+newsEntry.url+'" target="_blank" data-entry="'+newsEntry.key+'">'+newsEntry.title+'</a></li>');
             // Mark as printed
-            printedNews.push(newsKey);
+            printedNews.push(newsEntry.key);
+            newsEntry.printed = true;
           }
 
           // Notify and save "read" state for new entries
-          if(readNews.indexOf(newsKey) === -1)
+          if(readNews.indexOf(newsEntry.key) === -1)
           {
             // Show a notification
             var notification = new Notification('Nordnet', {
-              icon: "img/logo4.png",
-              body: newsText
+              icon: 'img/logo4.png',
+              body: newsEntry.title
             });
             notification.addEventListener('click', function() {
-              console.log('clickd');
-              gui.Shell.openExternal(newsLink);
+              gui.Shell.openExternal(newsEntry.url);
+              newsEntry.read = true;
+              notification.close();
             });
+            newsEntry.notified = true;
 
             // Log it
-            log({
-              newsSource: newsSource,
-              newsId: newsId,
-              newsText: newsText,
-              newsLink: newsLink
-            });
+            log(newsEntry);
 
             // Mark as read
-            readNews.push(newsKey);
+            readNews.push(newsEntry.key);
             localStorage.setItem('readNews', JSON.stringify(readNews));
           }
         });
