@@ -41,7 +41,6 @@ a[target='_blank'] ):after
   font-family: "SourceSansProSemiBold", Helvetica, sans-serif;
   font-size: 1.1em;
   line-height: 2.5em;
-  margin-bottom: 1em;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   text-align: center;
@@ -56,6 +55,36 @@ a[target='_blank'] ):after
 .container > .row:last-of-type > [class^="col-"]
 {
   padding-bottom: 1em;
+}
+
+.news
+{
+  display: flex;
+}
+.news-items
+{
+  width: 16em;
+}
+.news-items ul
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.news-items li
+{
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+}
+.news-items li:last-child
+{
+  border-bottom-right-radius: 3px;
+}
+.news-items a
+{
+  display: block;
+  padding: 0.5em;
 }
 
 /* Debug output area */
