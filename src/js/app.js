@@ -140,7 +140,7 @@ jQuery(document).ready(function(){
               log('Logged in!', true);
 
               jQuery('.login-form').hide();
-              jQuery('.news-items').show();
+              jQuery('.news').show();
 
               //TODO: populate a portfolios array so that refreshNews knows to rotate through them
               refreshNews();
