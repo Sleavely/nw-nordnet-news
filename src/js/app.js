@@ -191,19 +191,20 @@ jQuery(document).ready(function(){
         $rows.each(function(i, v){
           var $row = jQuery(v);
           var newsKey = $row.find('a').attr('onclick');
+          var newsText = $row.find('a').text();
+
+          // Extract source and ID from the newsKey so we can construct a link
+          var poopExtract = newsKey.match('this,\'(.*)\',\'(.*)\'');
+          var newsSource = poopExtract[2];
+          var newsId = poopExtract[1];
+          var newsLink = 'https://www.nordnet.se/mux/web/analys/nyheter/visaNyhet.html?itemid='+poopExtract[1]+'&sourcecode='+poopExtract[2];
+
+          // Add link to list
+          jQuery('.news-items ul').prepend('<li><a href="'+newsLink+'" target="_blank">'+newsText+'</a></li>');
+
+          // Notify and save "read" state for new entries
           if(readNews.indexOf(newsKey) === -1)
           {
-            var newsText = $row.find('a').text();
-
-            // Extract source and ID from the newsKey so we can construct a link
-            var poopExtract = newsKey.match('this,\'(.*)\',\'(.*)\'');
-            var newsSource = poopExtract[2];
-            var newsId = poopExtract[1];
-            var newsLink = 'https://www.nordnet.se/mux/web/analys/nyheter/visaNyhet.html?itemid='+poopExtract[1]+'&sourcecode='+poopExtract[2];
-
-            // Add link to list
-            jQuery('.news-items ul').prepend('<li><a href="'+newsLink+'" target="_blank">'+newsText+'</a></li>');
-
             // Show a notification
             var notification = new Notification('Nordnet', {
               icon: "img/logo4.png",
