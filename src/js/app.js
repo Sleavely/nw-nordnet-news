@@ -14,6 +14,7 @@ request = request.defaults({
 // Keep track of which news items we already notified about
 var readNews = localStorage.getItem('readNews') || '[]';
 readNews = JSON.parse(readNews);
+var printedNews = [];
 
 jQuery(document).ready(function(){
 
@@ -199,8 +200,13 @@ jQuery(document).ready(function(){
           var newsId = poopExtract[1];
           var newsLink = 'https://www.nordnet.se/mux/web/analys/nyheter/visaNyhet.html?itemid='+poopExtract[1]+'&sourcecode='+poopExtract[2];
 
-          // Add link to list
-          jQuery('.news-items ul').prepend('<li><a href="'+newsLink+'" target="_blank">'+newsText+'</a></li>');
+          if(printedNews.indexOf(newsKey) === -1)
+          {
+            // Add link to list
+            jQuery('.news-items ul').prepend('<li><a href="'+newsLink+'" target="_blank">'+newsText+'</a></li>');
+            // Mark as printed
+            printedNews.push(newsKey);
+          }
 
           // Notify and save "read" state for new entries
           if(readNews.indexOf(newsKey) === -1)
