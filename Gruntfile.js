@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     nwjs: {
       options: {
-        version: '0.12.3',
+        version: '0.17.0',
         platforms: ['win'],
         buildDir: './builds',
         winIco: './src/img/logo4.ico'
