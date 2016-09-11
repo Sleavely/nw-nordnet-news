@@ -179,7 +179,7 @@ jQuery(document).ready(function(){
   });
 
   var refreshNews = function(){
-    //TODO: Load the news page. On complete, set a timeout for loading it again (60 seconds seems like a reasonable wait)
+    // Load the news page. On complete, set a timeout for loading it again (60 seconds seems like a reasonable wait)
     var dayCount = 1;
     var nordnetNewsUrl = 'https://www.nordnet.se/mux/web/analys/nyheter/nyheterPressmeddelanden.html?omxnews=on&direkt=on&tddelayed=on&ob=on&arvopaperi=on&ddk=on&aktiefokus=on&hugin=on&wkr=on&ngn=on&atorg=on&beq=on&filtrering=mydepot&fritext=&day_count='+dayCount+'&sentform=1';
     request({
