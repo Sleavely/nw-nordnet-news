@@ -223,7 +223,8 @@ jQuery(document).ready(function(){
             // Show a notification
             var notification = new Notification('Nordnet', {
               icon: 'img/logo4.png',
-              body: newsEntry.title
+              body: newsEntry.title,
+              requireInteraction: true
             });
             notification.addEventListener('click', function() {
               gui.Shell.openExternal(newsEntry.url);
